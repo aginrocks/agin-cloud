@@ -2,3 +2,5 @@
 db_data
 .env
 files
+config.toml
+surreal_data

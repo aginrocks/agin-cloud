@@ -1,0 +1,17 @@
+services:
+  surrealdb:
+    entrypoint:
+      - /surreal
+      - start
+      - --user
+      - root
+      - --pass
+      - root
+      - rocksdb:/data/database.db
+    image: surrealdb/surrealdb:latest
+    ports:
+      - 8000:8000
+    user: "1000"
+    volumes:
+      - ./surreal_data:/data:rw
+    restart: unless-stopped
