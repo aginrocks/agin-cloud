@@ -28,12 +28,12 @@ reqwest = { version = "0.12.15", features = [
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.140"
 strum = { version = "0.27.1", features = ["derive"] }
-surrealdb = { version = "2.3.0", features = [
+surrealdb = { version = "2.3.3", features = [
     "http",
     "protocol-http",
     "rustls",
 ] }
-tokio = { version = "1.44.2", features = ["full"] }
+tokio = { version = "1.45.0", features = ["full"] }
 toml = "0.8.22"
 tower = { version = "0.5.2", features = ["full", "tokio", "log"] }
 tower-sessions = "0.14.0"
@@ -54,5 +54,4 @@ utoipa-axum = "0.2.0"
 utoipa-rapidoc = { version = "6.0.0", features = ["axum"] }
 utoipa-redoc = { version = "6.0.0", features = ["axum"] }
 utoipa-scalar = { version = "0.3.0", features = ["axum"] }
-utoipa-swagger-ui = { version = "9.0.1", features = ["axum"] }
 visible = "0.0.1"
