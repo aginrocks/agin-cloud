@@ -232,15 +232,24 @@ async fn init_axum(
     let routes = routes::routes();
 
     let autologin_router = {
-        let autologin_router = OpenApiRouter::new().route(
-            "/logout",
-            any({
-                let public_url = state.settings.general.public_url.clone();
-                |logout: OidcRpInitiatedLogout| async move {
-                    logout.with_post_logout_redirect(public_url)
-                }
-            }),
-        );
+        let autologin_router = OpenApiRouter::new()
+            .route(
+                "/api/logout",
+                any({
+                    let public_url = state.settings.general.public_url.clone();
+                    |logout: OidcRpInitiatedLogout| async move {
+                        logout.with_post_logout_redirect(public_url)
+                    }
+                }),
+            )
+            .route(
+                "/api/login",
+                any(|| async {
+                    // This route automatically redirects to the OIDC provider because of the
+                    // OidcLoginLayer middleware applied to the autologin_router
+                    (StatusCode::UNAUTHORIZED, "Redirecting to login provider").into_response()
+                }),
+            );
 
         let autologin_router = routes
             .clone()
